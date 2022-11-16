@@ -4,34 +4,26 @@ import java.util.Scanner;
 import java.sql.Connection;
 
 public class App {
+	
+	static Connection connection = null;
+	
     public static void main(String[] args) {
     	
-        //String dbURL = "jdbc:oracle:thin:[username/password]@oracle12c.scs.ryerson.ca:1521:orcl12c";
+        /* "jdbc:oracle:thin:[username/password]@oracle12c.scs.ryerson.ca:1521:orcl12c"; */
     	
     	//fill in username and password below (according to string above)
     	String dbURL = "jdbc:oracle:thin:[/]@oracle12c.scs.ryerson.ca:1521:orcl12c";
-        
-    	Connection connection = null;
-        
+                
         try {
             connection = DriverManager.getConnection(dbURL);
             System.out.println("Connected to Oracle Database Server!");
+            menu();
             
         } catch (SQLException e) {
             System.out.println("Database Connection Error!");
             e.printStackTrace();
         };
         
-        menu();
-        
-        try {
-			connection.close();
-			System.out.println("Database connection closed.");
-		} catch (SQLException e) {
-			System.out.println("Error in closing the database connection.");
-			e.printStackTrace();
-		}
-        System.exit(0);
     };
     
     public static void menu() {
@@ -70,7 +62,14 @@ public class App {
  
                 case 5:
                 	scanner.close();
-                    return;
+                    try {
+            			connection.close();
+            			System.out.println("Database connection closed.");
+            		} catch (SQLException e) {
+            			System.out.println("Error in closing the database connection.");
+            			e.printStackTrace();
+            		}
+                    System.exit(0);
  
                 default:
                     System.out.println("Invalid choice!!! Please make a valid choice. \\n\\n");
@@ -79,10 +78,12 @@ public class App {
     }
     
     public static void createTables() {
+    	
     	System.out.println("All tables successfully created.\n\n");
     }
     
     public static void populateTables() {
+    	
     	System.out.println("All tables successfully populated.\n\n");
     }
     
