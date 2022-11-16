@@ -5,13 +5,16 @@ import java.sql.Connection;
 
 public class App {
     public static void main(String[] args) {
-        String dbURL = "jdbc:oracle:thin:[s86shah/02060327]@oracle12c.scs.ryerson.ca:1521:orcl12c";
-        String username = "s86shah";
-        String password = "02060327";
-        Connection connection = null;
+    	
+        //String dbURL = "jdbc:oracle:thin:[username/password]@oracle12c.scs.ryerson.ca:1521:orcl12c";
+    	
+    	//fill in username and password below (according to string above)
+    	String dbURL = "jdbc:oracle:thin:[/]@oracle12c.scs.ryerson.ca:1521:orcl12c";
+        
+    	Connection connection = null;
         
         try {
-            connection = DriverManager.getConnection(dbURL, username, password);
+            connection = DriverManager.getConnection(dbURL);
             System.out.println("Connected to Oracle Database Server!");
             
         } catch (SQLException e) {
