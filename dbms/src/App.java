@@ -9,10 +9,10 @@ public class App {
 	
     public static void main(String[] args) {
     	
-        /* "jdbc:oracle:thin:[username/password]@oracle12c.scs.ryerson.ca:1521:orcl12c"; */
+        /*  "jdbc:oracle:thin:[username/password]@oracle12c.scs.ryerson.ca:1521:orcl12c";  */
     	
-    	//fill in username and password below (according to string above)
-    	String dbURL = "jdbc:oracle:thin:[/]@oracle12c.scs.ryerson.ca:1521:orcl12c";
+    	//replace username and password below
+    	String dbURL = "jdbc:oracle:thin:[username/password]@oracle12c.scs.ryerson.ca:1521:orcl12c";
                 
         try {
             connection = DriverManager.getConnection(dbURL);
@@ -78,13 +78,13 @@ public class App {
     }
     
     public static void createTables() {
-    	
     	System.out.println("All tables successfully created.\n\n");
     }
     
     public static void populateTables() {
     	
     	System.out.println("All tables successfully populated.\n\n");
+    	//display tables
     }
     
     public static void viewQueries() {
