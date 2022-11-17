@@ -1,0 +1,16 @@
+DROP TABLE Credit_Card;
+DROP TABLE Debit_Card;
+DROP TABLE Card_Payment_Order;
+DROP TABLE Card_Payment;
+DROP TABLE Product_Order;
+DROP TABLE Customer_Order;
+DROP TABLE Orders_In_Store;
+DROP TABLE Orders;
+DROP TABLE Customer_Address_Ids;
+DROP TABLE Address_Of_Customer;
+DROP TABLE Customer_Loyalty_Card;
+DROP TABLE Employees_In_Store;
+DROP TABLE Employee;
+DROP TABLE Products_In_Store;
+DROP TABLE Product;
+DROP TABLE Stores;
