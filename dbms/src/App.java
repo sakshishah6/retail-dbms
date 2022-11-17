@@ -15,7 +15,7 @@ public class App {
 		 */
 
 		// replace user name and password below
-		String dbURL = "jdbc:oracle:thin:s86shah/02060327@oracle.scs.ryerson.ca:1521:orcl";
+		String dbURL = "jdbc:oracle:thin:username/password@oracle.scs.ryerson.ca:1521:orcl";
 
 		try {
 			connection = DriverManager.getConnection(dbURL);
