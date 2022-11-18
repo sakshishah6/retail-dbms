@@ -7,23 +7,28 @@ import java.sql.Connection;
 public class App {
 
 	static Connection connection = null;
+	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
-		/*
-		 * "jdbc:oracle:thin:username/password@oracle12c.scs.ryerson.ca:1521:orcl";
-		 */
-
-		// replace user name and password below
-		String dbURL = "jdbc:oracle:thin:username/password@oracle.scs.ryerson.ca:1521:orcl";
+		String username = "";
+		String password = "";
+		System.out.println("Oracle Username: ");
+		username = scanner.nextLine();
+		System.out.println("Oracle Password: ");
+		password = scanner.nextLine();
+		
+		System.out.println("\nConnecting...\n");
+		
+		String dbURL = "jdbc:oracle:thin:"+username+"/"+password+"@oracle.scs.ryerson.ca:1521:orcl";
 
 		try {
 			connection = DriverManager.getConnection(dbURL);
-			System.out.println("Connected to Oracle Database Server!");
+			System.out.println("Connected to Oracle Database Server!\n");
 			menu();
 
 		} catch (SQLException e) {
-			System.out.println("Database Connection Error!");
+			System.out.println("Database Connection Error!\n");
 			e.printStackTrace();
 		}
 		;
@@ -32,7 +37,6 @@ public class App {
 
 	public static void menu() throws SQLException {
 		int choice;
-		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
 			System.out.println("\n\nWelcome to the Online Store Database!\n");
@@ -42,9 +46,9 @@ public class App {
 			System.out.println("3: View All Tables");
 			System.out.println("4: View Queries");
 			System.out.println("5: Drop Tables");
-			System.out.println("6: Quit\n \n ");
+			System.out.println("6: Quit\n");
 
-			System.out.println("Your selection: ");
+			System.out.print("Your selection: ");
 			choice = scanner.nextInt();
 
 			switch (choice) {
@@ -81,7 +85,7 @@ public class App {
 				System.exit(0);
 
 			default:
-				System.out.println("Invalid choice! Please make a valid choice. \\n\\n");
+				System.out.println("Invalid choice! Please make a valid choice.\n");
 			}
 		}
 	}
