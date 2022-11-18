@@ -58,6 +58,26 @@ CREATE TABLE Employees_In_Store(
     FOREIGN KEY (store_id) REFERENCES Stores(store_id) 
 );
 
+CREATE TABLE Address_Of_Employee(
+    addressEmp_id            INT                 NOT NULL,
+    address_street_number	 INT				 NOT NULL,
+    address_street			VARCHAR2(100)		NOT NULL,
+    address_city			VARCHAR2(100)		NOT NULL,
+    address_province		VARCHAR2(100)		NOT NULL,
+    address_postal_code		VARCHAR2(6)			NOT NULL,
+    PRIMARY KEY (addressEmp_id)
+);
+
+CREATE TABLE Employee_Address_Ids(
+    addressEmp_id            INT                 NOT NULL,
+    employee_id			     INT				 NOT NULL,
+    PRIMARY KEY (addressEmp_id),
+    FOREIGN KEY (employee_id) REFERENCES Employee(employee_id),
+    FOREIGN KEY (addressEmp_id) REFERENCES Address_Of_Employee(addressEmp_id)
+);
+
+
+
 CREATE TABLE Customer_Loyalty_Card( 
     customer_id	            INT	                NOT NULL, 
     first_name	            VARCHAR2(50)        NOT NULL, 
@@ -125,7 +145,7 @@ CREATE TABLE Product_Order(
     product_id	            INT			NOT NULL, 
     receipt_number			INT			NOT NULL, 
     item_amount             INT         DEFAULT 0, 
-    PRIMARY KEY (product_id), 
+    PRIMARY KEY (product_id, receipt_number), 
     FOREIGN KEY (product_id) REFERENCES Product(product_id), 
     FOREIGN KEY (receipt_number) REFERENCES Orders(receipt_number) 
      
@@ -164,4 +184,5 @@ CREATE TABLE Credit_Card(
     PRIMARY KEY (card_number, creditor_number), 
     FOREIGN KEY (card_number) REFERENCES Card_Payment(card_number) 
 );
+
 
