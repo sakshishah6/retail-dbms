@@ -47,10 +47,9 @@ public class App {
 			System.out.println("4: View Queries");
 			System.out.println("5: Drop Tables");
 			System.out.println("6: Quit\n");
-
 			System.out.print("Your selection: ");
+			
 			choice = scanner.nextInt();
-
 			switch (choice) {
 
 			case 1:
@@ -129,15 +128,14 @@ public class App {
 	}
 
 	public static void populateTables() {
-		String insertToStores = "INSERT INTO st7894 VALUES (2, 789465132, 50, 1200, 'dundas', 'toronto', 'on', 'l6p3l8')";
+		//String insertToStores = "INSERT INTO st7894 VALUES (2, 789465132, 50, 1200, 'dundas', 'toronto', 'on', 'l6p3l8')";
+		String[] insertStringsArr = {};
 		try {
-			Statement statement = connection.createStatement();
-			statement.executeUpdate(insertToStores);
-			int rows = statement.executeUpdate(insertToStores);
-			if (rows > 0) {
-				System.out.println("a row has been inserted");
-			}
-			statement.close();
+			for (String item: insertStringsArr) {
+				Statement statement = connection.createStatement();
+				statement.executeUpdate(item);
+				statement.close();
+			};
 			System.out.println("All tables successfully populated.\n\n");
 		} catch (SQLException e) {
 			System.out.println("There was a problem inserting these values into the table.");
