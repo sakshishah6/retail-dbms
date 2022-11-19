@@ -30,9 +30,7 @@ public class App {
 		} catch (SQLException e) {
 			System.out.println("Database Connection Error!\n");
 			e.printStackTrace();
-		}
-		;
-
+		};
 	};
 
 	public static void menu() throws SQLException {
@@ -47,7 +45,7 @@ public class App {
 			System.out.println("4: View Queries");
 			System.out.println("5: Drop Tables");
 			System.out.println("6: Quit\n");
-			System.out.print("Your selection: ");
+			System.out.println("Your selection: ");
 			
 			choice = scanner.nextInt();
 			switch (choice) {
@@ -84,7 +82,7 @@ public class App {
 				System.exit(0);
 
 			default:
-				System.out.println("Invalid choice! Please make a valid choice.\n");
+				System.out.println("\nInvalid choice! Please make a valid choice.\n");
 			}
 		}
 	}
@@ -120,9 +118,9 @@ public class App {
 				statement.executeUpdate(item);
 				statement.close();
 			};
-			System.out.println("All tables successfully created.\n\n");
+			System.out.println("\nAll tables successfully created.\n\n");
 		} catch (SQLException e) {
-			System.out.println("There was a problem creating the table.");
+			System.out.println("\nThere was a problem creating the table.");
 			e.printStackTrace();
 		}
 	}
@@ -195,28 +193,40 @@ public class App {
 		String insert64 = "INSERT INTO Debit_Card (card_number, chequing_account_number, bank_name) VALUES (9654826410230675, 91111111111, 'CIBC')";
 		String insert65 = "INSERT INTO Credit_Card (card_number, creditor_number, creditor_name) VALUES (5098123456789012, 98746123, 'TD Credit')";
 		
+		String[] insertStringsArr = {insert1, insert2, insert3, insert4, insert5, insert6, insert7, insert8, insert9, insert10, 
+									insert11, insert12, insert13, insert14, insert15, insert16, insert17, insert18, insert19, insert20, 
+									insert21, insert22, insert23, insert24, insert25, insert26, insert27, insert28, insert29, insert30, 
+									insert31, insert32, insert33, insert34, insert35, insert36, insert37, insert38, insert39, insert40, 
+									insert41, insert42, insert43, insert44, insert45, insert46, insert47, insert48, insert49, insert50, 
+									insert51, insert52, insert53, insert54, insert55, insert56, insert57, insert58, insert59, insert60, 
+									insert61, insert62, insert63, insert64, insert65};
+		
 		try {
-			for (int i=1; i<=65; i++) {
-				String insertString = "insert" + i;
+			for (String item: insertStringsArr) {
 				Statement statement = connection.createStatement();
-				statement.executeUpdate((insertString));
+				statement.executeUpdate(item);
 				statement.close();
 			};
-			System.out.println("All tables successfully populated.\n\n");
+			System.out.println("\nAll tables successfully populated.\n\n");
 		} catch (SQLException e) {
-			System.out.println("There was a problem inserting these values into the table.");
+			System.out.println("\nThere was a problem inserting these values into the table.");
 			e.printStackTrace();
 		}
 	}
 
 	public static void viewTables() {
-		String viewStores = "select * from st7894";
+		String view1 = "select * from stores";
+		String view2 = "select * from product";
+		String[] viewStringsArr = {view1, view2};
 		try {
-			Statement statement = connection.createStatement();
-			statement.executeUpdate(viewStores);
-			statement.close();
+			for (String item: viewStringsArr) {
+				Statement statement = connection.createStatement();
+				statement.executeUpdate(item);
+				//print table to console
+				statement.close();
+			};
 		} catch (SQLException e) {
-			System.out.println("There was a problem.");
+			System.out.println("\nThere was a problem.");
 			e.printStackTrace();
 		}
 	}
