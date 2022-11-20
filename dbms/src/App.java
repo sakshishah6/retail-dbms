@@ -223,24 +223,24 @@ public class App {
 	}
 
 	public static void viewTables() {
-		String view1 = "SELECT*FROM Stores";
-		String view2 = "SELECT*FROM Product";
-		String view3 = "SELECT*FROM Products_In_Store";
-		String view4 = "SELECT*FROM Employee";
-		String view5 = "SELECT*FROM Employees_In_Store";
-		String view6 = "SELECT*FROM Address_Of_Employee";
-		String view7 = "SELECT*FROM Employee_Address_Ids";
-		String view8 = "SELECT*FROM Customer_Loyalty_Card";
-		String view9 = "SELECT*FROM Address_Of_Customer";
-		String view10 = "SELECT*FROM Customer_Address_Ids";
-		String view11 = "SELECT*FROM Orders";
-		String view12 = "SELECT*FROM Orders_In_Store";
-		String view13 = "SELECT*FROM Customer_Order";
-		String view14 = "SELECT*FROM Product_Order";
-		String view15 = "SELECT*FROM Card_Payment_Order";
-		String view16 = "SELECT*FROM Card_Payment";
-		String view17 = "SELECT*FROM Debit_Card";
-		String view18 = "SELECT*FROM Credit_Card";
+		String view1 = "SELECT * FROM Stores";
+		String view2 = "SELECT * FROM Product";
+		String view3 = "SELECT * FROM Products_In_Store";
+		String view4 = "SELECT * FROM Employee";
+		String view5 = "SELECT * FROM Employees_In_Store";
+		String view6 = "SELECT * FROM Address_Of_Employee";
+		String view7 = "SELECT * FROM Employee_Address_Ids";
+		String view8 = "SELECT * FROM Customer_Loyalty_Card";
+		String view9 = "SELECT * FROM Address_Of_Customer";
+		String view10 = "SELECT * FROM Customer_Address_Ids";
+		String view11 = "SELECT * FROM Orders";
+		String view12 = "SELECT * FROM Orders_In_Store";
+		String view13 = "SELECT * FROM Customer_Order";
+		String view14 = "SELECT * FROM Product_Order";
+		String view15 = "SELECT * FROM Card_Payment_Order";
+		String view16 = "SELECT * FROM Card_Payment";
+		String view17 = "SELECT * FROM Debit_Card";
+		String view18 = "SELECT * FROM Credit_Card";
 		String[] viewStringsArr = {view1, view2, view3, view4, view5, view6, view7, view8, view9, 
 									view10, view11, view12, view13, view14, view15, view16, view17, view18};
 		try {
@@ -264,21 +264,19 @@ public class App {
 		scanner.nextLine();
 		query = scanner.nextLine();
 		try {
-			
 			Statement statement = connection.createStatement();
 		    ResultSet resultSet = statement.executeQuery(query);
-		    
 		    ResultSetMetaData rsmd = resultSet.getMetaData();
 		    int columnsNumber = rsmd.getColumnCount();
-
+		    for(int i = 1; i <= columnsNumber; i++)
+		    	System.out.print(rsmd.getColumnName(i) + "  ");
+		    System.out.println();
 		    while (resultSet.next()) {
 		        for(int i = 1; i <= columnsNumber; i++)
-		            System.out.print(resultSet.getString(i) + " ");
+		            System.out.print(resultSet.getString(i) + "  ");
 		        System.out.println();
 		    }
-		    
 			statement.close();
-			
 		} catch (SQLException e) {
 			System.out.println("\nThere was a problem with retrieving this query.\n\n");
 			e.printStackTrace();
