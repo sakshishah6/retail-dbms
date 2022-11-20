@@ -34,6 +34,7 @@ public class App {
 	};
 
 	public static void menu() throws SQLException {
+		
 		int choice;
 
 		while (true) {
@@ -42,9 +43,10 @@ public class App {
 			System.out.println("1: Create Tables");
 			System.out.println("2: Populate Tables");
 			System.out.println("3: View All Tables");
-			System.out.println("4: View Queries");
-			System.out.println("5: Drop Tables");
-			System.out.println("6: Quit\n");
+			System.out.println("4: Run a Query");
+			System.out.println("5: Insert/Update a Record");
+			System.out.println("6: Drop Tables");
+			System.out.println("7: Quit\n");
 			System.out.println("Your selection: ");
 			
 			choice = scanner.nextInt();
@@ -63,14 +65,18 @@ public class App {
 				break;
 				
 			case 4:
-				viewQueries();
+				runQuery();
 				break;
-
+				
 			case 5:
-				dropTables();
+				modifyRecord();
 				break;
 
 			case 6:
+				dropTables();
+				break;
+
+			case 7:
 				scanner.close();
 				try {
 					connection.close();
@@ -87,7 +93,7 @@ public class App {
 		}
 	}
 
-	public static void createTables() throws SQLException {
+	public static void createTables() {
 
 		String create1 = "CREATE TABLE stores (store_id INT NOT NULL,phone_number INT NOT NULL,employee_count INT NOT NULL,address_street_number INT NOT NULL,address_street VARCHAR2(100) NOT NULL,address_city VARCHAR2(100) NOT NULL,address_province VARCHAR2(100) NOT NULL,address_postal_code VARCHAR2(6) NOT NULL,PRIMARY KEY (store_id))";
 		String create2 = "CREATE TABLE product (product_id INT NOT NULL,product_name VARCHAR2(100) NOT NULL,clothing_type VARCHAR2(100) NOT NULL,price NUMBER(5, 2) NOT NULL,brand VARCHAR2(100) NOT NULL,material VARCHAR2(100) NOT NULL,product_size CHAR NOT NULL,colour VARCHAR2(100) NOT NULL,product_desc VARCHAR2(200),PRIMARY KEY (product_id))";
@@ -231,7 +237,7 @@ public class App {
 		}
 	}
 	
-	public static void viewQueries() {
+	public static void runQuery() {
 
 		// give a list of queries that the user can select from (queries described using
 		// words)
@@ -239,7 +245,26 @@ public class App {
 		// query in sql as well as the results will be displayed
 	}
 
-	public static void dropTables() throws SQLException {
+	public static void modifyRecord() {
+		System.out.println("\nSQL statement should be in one of the following forms:");
+		System.out.println("\t\"INSERT INTO table (column1, column2, ...) VALUES (value1, value2, ...)\"  OR");
+		System.out.println("\t\"UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition\"\n");
+		System.out.println("\nEnter a statement to add/update a record:\n");
+		String record = "";
+		scanner.nextLine();
+		record = scanner.nextLine();
+		try {
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(record);
+			statement.close();
+			System.out.println("\nRecord successfully updated in the database.\n\n");
+		} catch (SQLException e) {
+			System.out.println("\nThere was a problem with updating this record.");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void dropTables() {
 
 		String drop1 = "DROP TABLE credit_card";
 		String drop2 = "DROP TABLE debit_card";
