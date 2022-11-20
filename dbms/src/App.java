@@ -1,4 +1,6 @@
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -24,11 +26,11 @@ public class App {
 
 		try {
 			connection = DriverManager.getConnection(dbURL);
-			System.out.println("Connected to Oracle Database Server!\n");
+			System.out.println("\nConnected to Oracle Database Server!\n");
 			menu();
 
 		} catch (SQLException e) {
-			System.out.println("Database Connection Error!\n");
+			System.out.println("\nDatabase Connection Error!\n");
 			e.printStackTrace();
 		};
 	};
@@ -80,9 +82,9 @@ public class App {
 				scanner.close();
 				try {
 					connection.close();
-					System.out.println("Database connection closed.");
+					System.out.println("\nDatabase connection closed.\n");
 				} catch (SQLException e) {
-					System.out.println("Error in closing the database connection.");
+					System.out.println("\nError in closing the database connection.\n");
 					e.printStackTrace();
 				}
 				System.exit(0);
@@ -126,7 +128,7 @@ public class App {
 			};
 			System.out.println("\nAll tables successfully created.\n\n");
 		} catch (SQLException e) {
-			System.out.println("\nThere was a problem creating the table.");
+			System.out.println("\nThere was a problem creating the table.\n\n");
 			e.printStackTrace();
 		}
 	}
@@ -215,7 +217,7 @@ public class App {
 			};
 			System.out.println("\nAll tables successfully populated.\n\n");
 		} catch (SQLException e) {
-			System.out.println("\nThere was a problem inserting these values into the table.");
+			System.out.println("\nThere was a problem inserting these values into the table.\n\n");
 			e.printStackTrace();
 		}
 	}
@@ -238,11 +240,32 @@ public class App {
 	}
 	
 	public static void runQuery() {
+		System.out.println("\nSQL statement should be in the following form:");
+		System.out.println("\t\"SELECT column1, column2, ... FROM table\"");
+		System.out.println("\nEnter a query:");
+		String query = "";
+		scanner.nextLine();
+		query = scanner.nextLine();
+		try {
+			
+			Statement statement = connection.createStatement();
+		    ResultSet resultSet = statement.executeQuery(query);
+		    
+		    ResultSetMetaData rsmd = resultSet.getMetaData();
+		    int columnsNumber = rsmd.getColumnCount();
 
-		// give a list of queries that the user can select from (queries described using
-		// words)
-		// user selects a number and then the query will run
-		// query in sql as well as the results will be displayed
+		    while (resultSet.next()) {
+		        for(int i = 1; i < columnsNumber; i++)
+		            System.out.print(resultSet.getString(i) + " ");
+		        System.out.println();
+		    }
+		    
+			statement.close();
+			
+		} catch (SQLException e) {
+			System.out.println("\nThere was a problem with retrieving this query.\n\n");
+			e.printStackTrace();
+		}
 	}
 
 	public static void modifyRecord() {
@@ -259,7 +282,7 @@ public class App {
 			statement.close();
 			System.out.println("\nRecord successfully updated in the database.\n\n");
 		} catch (SQLException e) {
-			System.out.println("\nThere was a problem with updating this record.");
+			System.out.println("\nThere was a problem with updating this record.\n\n");
 			e.printStackTrace();
 		}
 	}
@@ -295,9 +318,9 @@ public class App {
 				statement.executeUpdate(item);
 				statement.close();
 			};
-			System.out.println("All tables successfully dropped.\n\n");
+			System.out.println("\nAll tables successfully dropped.\n\n");
 		} catch (SQLException e) {
-			System.out.println("There was a problem dropping the tables.");
+			System.out.println("\nThere was a problem dropping the tables.\n\n");
 			e.printStackTrace();
 		}
 	}
