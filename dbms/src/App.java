@@ -223,6 +223,7 @@ public class App {
 	}
 
 	public static void viewTables() {
+		
 		String view1 = "SELECT * FROM Stores";
 		String view2 = "SELECT * FROM Product";
 		String view3 = "SELECT * FROM Products_In_Store";
@@ -243,12 +244,25 @@ public class App {
 		String view18 = "SELECT * FROM Credit_Card";
 		String[] viewStringsArr = {view1, view2, view3, view4, view5, view6, view7, view8, view9, 
 									view10, view11, view12, view13, view14, view15, view16, view17, view18};
+		
 		try {
+			
 			for (String item: viewStringsArr) {
+			
 				Statement statement = connection.createStatement();
-				statement.executeUpdate(item);
+			    ResultSet resultSet = statement.executeQuery(item);
+			    ResultSetMetaData rsmd = resultSet.getMetaData();
+			    int columnsNumber = rsmd.getColumnCount();
+			    for(int i = 1; i <= columnsNumber; i++)
+			    	System.out.print(rsmd.getColumnName(i) + "  ");
+			    System.out.println();
+			    while (resultSet.next()) {
+			        for(int i = 1; i <= columnsNumber; i++)
+			            System.out.print(resultSet.getString(i) + "  ");
+			        System.out.println();
 				//print table to console
-				statement.close();
+			    }
+			    statement.close();
 			};
 		} catch (SQLException e) {
 			System.out.println("\nThere was a problem.");
