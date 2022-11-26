@@ -1,18 +1,21 @@
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Welcome to the Clothing Retail Store DBMS Application. 
+
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
+The workspace contains two folders, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+1) `src`: the folder to maintain sources
+    > This folder contains App.java which will be executed in order to run the application.
+2) `lib`: the folder to maintain dependencies
+    > This folder contains a .jar file called "ojdbc8.jar", which must be added to the classpath in order to connect to the Oracle database system. 
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Instructions
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+1) Download the Java package or clone the repository on a local computer.
+2) If not on Ryerson lab computers, connect to the OpenVPN.
+3) Add ojdbc8.jar file from dbms\lib to the classpath of the project.
+4) Run the App.java file to use the application.
