@@ -18,6 +18,5 @@ The workspace contains two folders, where:
 1) Download the Java package or clone the repository on a local computer.
 2) Connect to an Oracle database.
 3) Open Eclipse and add this project to your workspace.
-4) Navigate to `CPS510-DBMS/dbms/src/App.java` and fill in your username and password in order to establish your connection with the Oracle database.
-5) Add ojdbc8.jar file from dbms\lib to the classpath of the project.
-6) Run the App.java file, either in Eclipse or in your terminal.
+4) Add ojdbc8.jar file from dbms\lib to the classpath of the project.
+5) Run the App.java file, either in Eclipse or in your terminal.
