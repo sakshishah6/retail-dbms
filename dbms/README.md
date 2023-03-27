@@ -16,6 +16,7 @@ The workspace contains two folders, where:
 ## Instructions
 
 1) Download the Java package or clone the repository on a local computer.
-2) If not on TMU lab computers, connect to the OpenVPN. Otherwise, skip this step.
-3) Add ojdbc8.jar file from dbms\lib to the classpath of the project.
-4) Run the App.java file.
+2) Connect to an Oracle database.
+3) Open Eclipse and add this project to your workspace.
+4) Add ojdbc8.jar file from dbms\lib to the classpath of the project.
+5) Run the App.java file, either in Eclipse or in your terminal.
